@@ -3,6 +3,8 @@ import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"; // Update import
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,14 +18,15 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5001/api/v1/user/login",
-        { email, password },
-        {
-          withCredentials: true,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+     const response = await axios.post(
+  `${BASE_URL}/api/v1/user/login`,
+  { email, password },
+  {
+    withCredentials: true,
+    headers: { "Content-Type": "application/json" },
+  }
+);
+
 
       console.log("Login successful:", response.data);
       toast.success(response.data.message || "Login successful!");

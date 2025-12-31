@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Buy() {
   const { courseId } = useParams();
@@ -23,7 +25,8 @@ function Buy() {
       if (!token) return;
       try {
         const response = await axios.get(
-          `http://localhost:5001/api/v1/course/${courseId}`,
+         `${BASE_URL}/api/v1/course/${courseId}`
+,
           {
             headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
@@ -39,8 +42,7 @@ function Buy() {
     const fetchTotalPurchases = async () => {
       if (!token) return;
       try {
-        const response = await axios.get(
-          "http://localhost:5001/api/v1/user/purchased",
+        const response = await axios.get(`${BASE_URL}/api/v1/user/purchased`,
           {
             headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
@@ -76,8 +78,7 @@ function Buy() {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        `http://localhost:5001/api/v1/course/buy/${courseId}`,
+      const response = await axios.post(`${BASE_URL}/api/v1/course/buy/${courseId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

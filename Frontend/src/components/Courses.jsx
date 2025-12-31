@@ -11,6 +11,8 @@ import { HiMenu, HiX } from "react-icons/hi"; // Import menu and close icons
 import logo from "../assets/logo.png";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -35,12 +37,10 @@ export default function Courses() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5001/api/v1/course/courses",
-          {
-            withCredentials: true,
-          }
-        );
+        const response = await axios.get(`${BASE_URL}/api/v1/course/courses`, {
+  withCredentials: true,
+});
+
         console.log(response.data.courses);
         setCourses(response.data.courses);
         setLoading(false);
@@ -54,12 +54,10 @@ export default function Courses() {
   // Logout
   const handleLogout = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5001/api/v1/user/logout",
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get(`${BASE_URL}/api/v1/user/logout`, {
+  withCredentials: true,
+});
+
       toast.success(response.data.message);
       localStorage.removeItem("user");
       setIsLoggedIn(false);

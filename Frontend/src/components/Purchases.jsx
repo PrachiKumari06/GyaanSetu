@@ -8,6 +8,8 @@ import { RiHome2Fill } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Purchases() {
   const [purchases, setPurchases] = useState([]);
@@ -30,12 +32,13 @@ function Purchases() {
       if (!token) return;
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/v1/user/purchased-courses",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-            withCredentials: true,
-          }
-        );
+  `${BASE_URL}/api/v1/user/purchased-courses`,
+  {
+    headers: { Authorization: `Bearer ${token}` },
+    withCredentials: true,
+  }
+);
+
         setPurchases(response.data?.courseData || response.data?.purchases || []);
       } catch (error) {
         setErrorMessage(error?.response?.data?.errors || "Failed to fetch purchase data");
@@ -47,7 +50,10 @@ function Purchases() {
   // Logout
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:5001/api/v1/user/logout", { withCredentials: true });
+       await axios.get(`${BASE_URL}/api/v1/user/logout`, {
+  withCredentials: true,
+});
+
       toast.success("Logout successful");
     } catch (error) {
       console.log(error);

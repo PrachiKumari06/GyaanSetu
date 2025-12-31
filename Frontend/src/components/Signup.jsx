@@ -3,6 +3,8 @@ import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"; // Update import
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -20,20 +22,20 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/v1/user/signup",
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  `${BASE_URL}/api/v1/user/signup`,
+  {
+    firstName,
+    lastName,
+    email,
+    password,
+  },
+  {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
 
       toast.success("Signup successful!");
       // Wait for toast to show before navigating
