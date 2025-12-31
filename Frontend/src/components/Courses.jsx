@@ -24,14 +24,11 @@ export default function Courses() {
   console.log("courses: ", courses);
 
   // Check token
-  useEffect(() => {
-    const token = localStorage.getItem("user");
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);
+}, []);
+
 
   // Fetch courses
   useEffect(() => {
@@ -59,7 +56,8 @@ export default function Courses() {
 });
 
       toast.success(response.data.message);
-      localStorage.removeItem("user");
+localStorage.removeItem("token");
+localStorage.removeItem("user");
       setIsLoggedIn(false);
     } catch (error) {
       console.log("Error in logging out ", error);
@@ -100,12 +98,11 @@ export default function Courses() {
         <nav>
           <ul>
             <li className="mb-4">
-              <a
-                href="/"
+              <Link to="/"
                 className="flex items-center text-white hover:text-orange-500 duration-300"
               >
                 <RiHome2Fill className="mr-2" /> Home
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
               <a
@@ -116,12 +113,11 @@ export default function Courses() {
               </a>
             </li>
             <li className="mb-4">
-              <a
-                href="/purchases"
+              <Link to="/purchases"
                 className="flex items-center text-white hover:text-orange-500 duration-300"
               >
                 <FaDownload className="mr-2" /> Purchases
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
               <a
