@@ -8,6 +8,7 @@ import Courses from "./components/Courses.jsx";
 import Buy from "./components/Buy.jsx";
 import Purchases from "./components/Purchases.jsx";
 import About from "./components/About.jsx";
+import Contact from "./components/Contact.jsx";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/buy/:courseId" element={<Buy />} />  
         <Route path="/purchases" element={<Purchases />} />
+        <Route path="/contact" element={<Contact/>}
       </Routes>
     </>
   );
