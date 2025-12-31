@@ -26,12 +26,13 @@ app.use(
   })
 );
 
-app.use(cors({
-  origin: "http://localhost:5173", // frontend url
-  credentials: true, // to send cookies
-  methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
-  allowedHeaders: ["Content-Type", "Authorization"], // allowed headers in request
-}))
+app.use(
+  cors({
+    origin: true, // allow all origins
+    credentials: true,
+  })
+);
+
 
 // ✅ port and database
 const port = process.env.PORT || 3000; // default port
@@ -48,6 +49,10 @@ try {
 }
 
 // ✅ defining routes
+app.get("/", (req, res) => {
+  res.send("GyaanSetu backend is running");
+});
+
 app.use("/api/v1/course", courseRoute); // this is for course collection
 app.use("/api/v1/user", userRoute); // this is for user collection
 app.use("/api/v1/admin", adminRoute);
