@@ -7,12 +7,14 @@ import Signup from "./components/Signup.jsx";
 import Courses from "./components/Courses.jsx";
 import Buy from "./components/Buy.jsx";
 import Purchases from "./components/Purchases.jsx";
+import About from "./components/About.jsx";
 
 export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/courses" element={<Courses />} />
