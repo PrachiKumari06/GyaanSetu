@@ -8,6 +8,8 @@ import Slider from "react-slick"; //in cmd :npm install react-slick --save
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import toast from "react-hot-toast";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function Home() {
   const [courses, setCourses] = useState([]); //step 2: usestate for courses
@@ -39,7 +41,8 @@ export default function Home() {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/v1/course/courses",
+          `${BASE_URL}/api/v1/course/courses`
+,
           { withCredentials: true } // ✅ correct spelling
         );
         console.log("Courses fetched:", response.data); // check what backend returns
