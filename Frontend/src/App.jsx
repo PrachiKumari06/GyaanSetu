@@ -21,7 +21,7 @@ export default function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/buy/:courseId" element={<Buy />} />  
         <Route path="/purchases" element={<Purchases />} />
-        <Route path="/contact" element={<Contact/>}
+        <Route path="/contact" element={<Contact/>}/>
       </Routes>
     </>
   );
